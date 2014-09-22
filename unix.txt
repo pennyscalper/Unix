@@ -1,4 +1,4 @@
-nice unix stuff
+Some useful unix commands
 
 //((for running grep))
 tail -f | grep
