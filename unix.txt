@@ -31,7 +31,7 @@ diff dummy_file1.dat dummy_file2.dat
 paste dummy1.txt dummy2.txt grocery.list
 
 
-//for basic calculator
+//basic calculator
 $ echo 2+3|bc
 $ echo 3*3+2|bc
 $ VAR1=$(echo 2^8|bc)
