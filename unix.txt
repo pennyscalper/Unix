@@ -1,0 +1,66 @@
+nice unix stuff
+
+//((for running grep))
+tail -f | grep
+//((its an interactive command to go over a file))
+less 
+//((sort by characters
+ tr -sc 'A-Za-z' '\n' < tmpStory.txt | sort | uniq -c | less 
+//((sort by count))
+tr -sc 'A-Za-z' '\n' < tmpStory.txt | sort | uniq -c | sort -n -r | less 
+//((sort by count after converting the upper letter to lower))
+tr 'A-Z' 'a-z' < tmpStory.txt | tr -sc 'A-Za-z' '\n' | sort | uniq -c | sort -n -r | less 
+
+//search words ending in ing
+ tr -sc 'A-Za-z' '\n' < tmpStory.txt | tr 'A-Z' 'a-z' | grep 'ing$' | sort | uniq -c | sort -n -r | less
+
+//search words ending in ing but only with a vowel before 'ing. here . means anything and * means one or more
+tr -sc 'A-Za-z' '\n' < tmpStory.txt | tr 'A-Z' 'a-z' | grep '[aeiou].*ing$' | sort | uniq -c | sort -n -r | less
+
+
+//Example tr - remove carriage returns:
+tr -d '\r' < dosfile.txt > unixfile.txt
+
+//Create files for demonstration: takes input untill EOF is encountered and then puts it in to the file
+cat << EOF > dummy_file1.dat
+
+//diff two files
+diff dummy_file1.dat dummy_file2.dat
+
+//Example 1 of paste - lines from multiple files: for displaying output side by side
+paste dummy1.txt dummy2.txt grocery.list
+
+
+//for basic calculator
+$ echo 2+3|bc
+$ echo 3*3+2|bc
+$ VAR1=$(echo 2^8|bc)
+$ echo $VAR1
+$ echo "(1+1)^8"|bc
+printf "Percentage: %2.2f%%\n" $(echo .9963*100|bc)
+
+//split to split up a big file into smaller files for processing. -l tells the maximum number of lines for each //output file. Also profvide prefix for the files
+split -l 2000 tmpStory.txt tmpStory_
+
+//cut; It cuts data by bytes (-b), characters (-c), or fields (-f) as specified by a list.
+cat dummy_cut.dat |cut -f1- -d, -s
+
+//uniq; list needs to be sorted. -c gives count as well. -d just shows the duplicated
+cat dummy_uniq.dat | sort |uniq -d -c
+
+//sort. run with -u will only show unique. -r is in reverese; -n will sort in numeric order and not alphabetic. -f ignores case
+$cat << EOF > dummy_sort1.dat
+014 VMW, 102.92
+013 INTC, 22.69
+012 sap,  59.37
+011 IBM, 174.99
+011 IBM, 174.99
+
+EOF
+$sort -u dummy_sort1.dat
+
+//join. -t specifies the delimiter. -j species the field on which join to be made(default is 1st column)
+
+
+
+
